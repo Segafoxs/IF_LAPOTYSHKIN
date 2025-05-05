@@ -1,7 +1,8 @@
 package ru.iFellow;
-import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 public class AutoTest extends WebHooks {
     private final AuthorizationPage authPage = new AuthorizationPage();
@@ -11,61 +12,56 @@ public class AutoTest extends WebHooks {
     private final CloseTask closetask = new CloseTask();
     private final String login = "AT13";
     private final String password = "Qwerty123";
-
+    private final String checkTextH3 = "Назначенные мне";
 
     @Test
+    @DisplayName("Авторизация в Jira")
     public void TestAuth(){
-        authPage.inputLogin(login);
-        authPage.inputPassword(password);
-        authPage.clickLoginBtn();
+        authPage.enterAuthLogin(login, password);
+        assertEquals(checkTextH3, authPage.getTextH3(), "Авторизация не пройдена");
     }
 
     @Test
+    @DisplayName("Открытие проекта TEST")
     public void goTestProject(){
-        authPage.inputLogin(login);
-        authPage.inputPassword(password);
-        authPage.clickLoginBtn();
+        authPage.enterAuthLogin(login, password);
         listTaskPage.clickDropList();
+        assertTrue(listTaskPage.getHrefProjectTest(), "Неверный URL");
     }
 
     @Test
+    @DisplayName("Проверка счетчика задания")
     public void checkCountTask(){
-        authPage.inputLogin(login);
-        authPage.inputPassword(password);
-        authPage.clickLoginBtn();
+        authPage.enterAuthLogin(login, password);
         listTaskPage.clickDropList();
         testProjectPage.FilterTask();
-        String result = testProjectPage.popItemList();
-        String numberTask = testProjectPage.checkNumberTask(result);
+        assertEquals("Все задачи", testProjectPage.checkAllTask());
+        int numberTaskBefore = testProjectPage.checkNumberTask();
         testProjectPage.CreateTask();
-        Selenide.refresh();
-        String result2 = testProjectPage.popItemList();
-        String numberTask2 = testProjectPage.checkNumberTask(result2);
-        Assertions.assertEquals(Integer.parseInt(numberTask2), Integer.parseInt(numberTask) + 1);
+        testProjectPage.pageReload();
+        int numberTaskAfter = testProjectPage.checkNumberTask();
+        assertEquals(numberTaskBefore + 1, numberTaskAfter, "Неверное количество задач");
     }
 
     @Test
+    @DisplayName("Проверка статуса и версии задачи TestSeleniumATHomework")
     public void checkTaskSelehiumHW(){
-        authPage.inputLogin(login);
-        authPage.inputPassword(password);
-        authPage.clickLoginBtn();
+        authPage.enterAuthLogin(login, password);
         listTaskPage.clickDropList();
         testProjectPage.FilterTask();
         testProjectPage.CreateTask();
         testProjectPage.searchLineRequest();
-        Assertions.assertEquals("Сделать", testProjectPage.checkStatusTask());
-        Assertions.assertEquals("Version 2.0", testProjectPage.checkVersion());
+        assertEquals("Сделать", testProjectPage.checkStatusTask(), "Неверный статус");
+        assertEquals("Version 2.0", testProjectPage.checkVersion(), "Неверная версия");
     }
 
     @Test
+    @DisplayName("Создание и закрытие бага")
     public void createNewBugJira(){
-        authPage.inputLogin(login);
-        authPage.inputPassword(password);
-        authPage.clickLoginBtn();
+        authPage.enterAuthLogin(login, password);
         listTaskPage.clickDropList();
         testProjectPage.FilterTask();
         testProjectPage.CreateTask();
-        Selenide.refresh();
         testProjectPage.searchLineRequest();
         createNewBug.clckButton();
         createNewBug.clckButtonVisual();
@@ -76,14 +72,13 @@ public class AutoTest extends WebHooks {
         createNewBug.writeEnvField();
         createNewBug.choiceVersionBug();
         createNewBug.connetTaskNewBug();
-        createNewBug.linkApicBug();
         createNewBug.choiceSprintBug();
         createNewBug.choicePrioretyBug();
         createNewBug.createNewBugButtonClick();
         closetask.closeTaskJira();
         closetask.choiceFilterTask();
-        String result = testProjectPage.popItemList();
-        String numberTask = testProjectPage.checkNumberTask(result);
+        assertEquals("Сделать", closetask.checkStatusBug(), "Неверный статус задачи");
         closetask.openDropDown();
+        assertEquals("Готово", closetask.checkStatusBug(), "Задача не закрыта");
     }
 }

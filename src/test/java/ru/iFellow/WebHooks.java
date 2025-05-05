@@ -1,30 +1,23 @@
 package ru.iFellow;
 
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.PageLoadStrategy;
 import com.codeborne.selenide.Configuration;
-import org.openqa.selenium.WebDriver;
-
 
 public class WebHooks {
-
-
-    private WebDriver driver;
 
     @BeforeEach
     public void initBrowser() {
         Configuration.pageLoadStrategy = PageLoadStrategy.EAGER.toString();
-        Configuration.timeout = 15000;
+        Configuration.timeout = 10000;
 
         Selenide.open("https://edujira.ifellow.ru/secure/Dashboard.jspa"
         );
-        System.out.println(Configuration.pageLoadStrategy);
-        System.out.println("!!!!!");
-
+        WebDriverRunner.getWebDriver().manage().window().maximize();
     }
-
 
 
     @AfterEach
