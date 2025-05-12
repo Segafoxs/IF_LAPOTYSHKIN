@@ -1,26 +1,22 @@
-package ru.iFellow;
-
+package ru.iFellow.Hooks;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import org.openqa.selenium.PageLoadStrategy;
 import com.codeborne.selenide.Configuration;
 
 public class WebHooks {
 
-    @BeforeEach
+    @Before("@ifellow")
     public void initBrowser() {
         Configuration.pageLoadStrategy = PageLoadStrategy.EAGER.toString();
         Configuration.timeout = 10000;
-
-        Selenide.open("https://edujira.ifellow.ru/secure/Dashboard.jspa"
-        );
+        Selenide.open("https://edujira.ifellow.ru/secure/Dashboard.jspa");
         WebDriverRunner.getWebDriver().manage().window().maximize();
     }
 
-
-    @AfterEach
+    @After("@ifellow")
     public void AfterTest(){
         Selenide.closeWebDriver();
     }

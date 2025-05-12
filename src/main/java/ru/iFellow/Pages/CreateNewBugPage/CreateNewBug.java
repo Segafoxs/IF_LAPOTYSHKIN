@@ -1,10 +1,7 @@
-package ru.iFellow;
-
+package ru.iFellow.Pages.CreateNewBugPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-
 import java.time.Duration;
-
 import static com.codeborne.selenide.Selenide.*;
 
 public class CreateNewBug {
@@ -35,13 +32,8 @@ public class CreateNewBug {
     private SelenideElement buttonInputBug = $x("//footer[@class='aui-dialog2-footer']//div[@class='buttons']//input[@name='Edit']").as("Отправка формы создания бага");
     private final SelenideElement pDesription = $("p");
     private final SelenideElement pEnv = $("p");
-    private final String topicBug = "New Bug AT13";
-    private final String markerBug = "bugfix";
-    private final String description = "FIX FIX FIX";
-    private final String searchTask = "TEST-182096";
-    private final String board = "Доска Спринт 1";
 
-    public void clckButton(){
+    public void clckCreateBugButton(){
         createButton.shouldBe(Condition.visible, Duration.ofSeconds(8));
         createButton.click();
     }
@@ -53,13 +45,13 @@ public class CreateNewBug {
         buttonVisualTwo.click();
     }
 
-    public void clckInputTopicBugField(){
+    public void clckInputTopicBugField(String topicBug){
         inputVersion.shouldBe(Condition.visible, Duration.ofSeconds(8));
         inputTopicBug.click();
         inputTopicBug.sendKeys(topicBug);
     }
 
-    public void writeFieldDesription(){
+    public void writeFieldDesription(String description){
         descriptionFieldIframe.shouldBe(Condition.visible, Duration.ofSeconds(8));
         switchTo().frame(descriptionFieldIframe);
         pDesription.shouldBe(Condition.visible, Duration.ofSeconds(8));
@@ -67,39 +59,39 @@ public class CreateNewBug {
         switchTo().defaultContent();
     }
 
-    public void chooseVersionFix(){
+    public void chooseVersionFix(String version){
         inputVersion.shouldBe(Condition.visible, Duration.ofSeconds(8));
-        inputVersion.selectOption("Version 2.0");
+        inputVersion.selectOption(version);
     }
 
-    public void sendTextInTextAriaBug(){
+    public void sendTextInTextAriaBug(String marker){
         textAriaBug.shouldBe(Condition.visible, Duration.ofSeconds(8));
         textAriaBug.click();
-        textAriaBug.setValue(markerBug).pressEnter();
+        textAriaBug.setValue(marker).pressEnter();
     }
 
-    public void writeEnvField(){
+    public void writeEnvField(String env){
         switchTo().frame(envFieldIframe);
-        pEnv.sendKeys(description);
+        pEnv.sendKeys(env);
         switchTo().defaultContent();
     }
 
-    public void choiceVersionBug(){
+    public void choiceVersionBug(String version){
         choiceVersion.shouldBe(Condition.visible, Duration.ofSeconds(8));
-        choiceVersion.selectOption("Version 2.0");
+        choiceVersion.selectOption(version);
     }
 
-    public void connetTaskNewBug()
+    public void connetTaskNewBug(String task)
     {
         connectTask.shouldBe(Condition.visible, Duration.ofSeconds(8));
         connectTask.click();
-        connectTask.setValue(searchTask).pressEnter();
+        connectTask.setValue(task).pressEnter();
     }
 
-    public void choiceSprintBug(){
+    public void choiceSprintBug(String boardSprint){
         sprint.shouldBe(Condition.visible, Duration.ofSeconds(8));
         sprint.click();
-        sprint.setValue(board).pressEnter();
+        sprint.setValue(boardSprint).pressEnter();
     }
 
     public void choicePrioretyBug(){

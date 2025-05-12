@@ -1,4 +1,4 @@
-package ru.iFellow;
+package ru.iFellow.Pages.AuthPage;
 import static com.codeborne.selenide.Selenide.*;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
