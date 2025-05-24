@@ -8,15 +8,6 @@ import java.util.ArrayList;
 public class RickAndMortySteps {
     private final RickAndMortyAPI rickAndMorty = new RickAndMortyAPI();
 
-    public Character getCharacterForId(long id){
-        Character character = rickAndMorty.getCharacterForId(id)
-                .statusCode(200)
-                .extract()
-                .body()
-                .as(Character.class);
-        return character;
-    }
-
     public Root getCharacterForName(String name) {
         Root root = rickAndMorty.getCharacterForName(name)
                 .statusCode(200)
@@ -33,7 +24,7 @@ public class RickAndMortySteps {
     }
 
     public Episode getEpisodeForLink(String url){
-        Episode episode = rickAndMorty.getEpisodeForURL(url)
+        Episode episode = rickAndMorty.getItemForURL(url)
                 .statusCode(200)
                 .extract()
                 .body()
@@ -42,7 +33,7 @@ public class RickAndMortySteps {
     }
 
     public Character getCharacterForLink(String url){
-        Character character = rickAndMorty.getCharacterForURL(url)
+        Character character = rickAndMorty.getItemForURL(url)
                 .statusCode(200)
                 .extract()
                 .body()

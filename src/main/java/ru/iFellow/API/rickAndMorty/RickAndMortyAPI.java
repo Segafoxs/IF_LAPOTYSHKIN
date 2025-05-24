@@ -14,23 +14,7 @@ public class RickAndMortyAPI {
                 .statusCode(200);
     }
 
-    public ValidatableResponse getCharacterForId(long id){
-        return given()
-                .when()
-                .get(searchURL + id)
-                .then()
-                .statusCode(200);
-    }
-
-    public ValidatableResponse getEpisodeForURL(String url){
-        return given()
-                .when()
-                .get(url)
-                .then()
-                .statusCode(200);
-    }
-
-    public ValidatableResponse getCharacterForURL(String url){
+    public ValidatableResponse getItemForURL(String url){
         return given()
                 .when()
                 .get(url)

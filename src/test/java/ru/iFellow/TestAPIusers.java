@@ -1,23 +1,18 @@
 package ru.iFellow;
-import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.iFellow.API.Specifications.Specifications;
+import ru.iFellow.Hooks.Hooks;
 import ru.iFellow.models.User.UserResponse;
 import ru.iFellow.steps.UsersSteps;
 import java.io.IOException;
-import static ru.iFellow.utill.TestProperties.getProperty;
 
-public class TestAPIusers {
+public class TestAPIusers extends Hooks {
     private final UsersSteps users = new UsersSteps();
 
-    @BeforeAll
-    public static void setUp() {
-        RestAssured.requestSpecification = Specifications.baseRequestSpec(getProperty("baseURLusers"));
-        RestAssured.responseSpecification = Specifications.baseResponseSpecSuccess();
+    public TestAPIusers() {
+        Hooks.setUrl("baseURLusers");
     }
 
     @Test

@@ -1,23 +1,18 @@
 package ru.iFellow;
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.iFellow.API.Specifications.Specifications;
+import ru.iFellow.Hooks.Hooks;
 import ru.iFellow.models.CharacterModels.Character;
 import ru.iFellow.models.CharacterModels.Root;
 import ru.iFellow.steps.RickAndMortySteps;
 import java.util.ArrayList;
-import static ru.iFellow.utill.TestProperties.getProperty;
 
-public class TestAPIRickAndMorty {
+public class TestAPIRickAndMorty extends Hooks {
     private final RickAndMortySteps rickAndMorty = new RickAndMortySteps();
 
-    @BeforeAll
-    public static void setUp() {
-        RestAssured.requestSpecification = Specifications.baseRequestSpec(getProperty("baseURLRickAndMorty"));
-        RestAssured.responseSpecification = Specifications.baseResponseSpecSuccess();
+    public TestAPIRickAndMorty() {
+        Hooks.setUrl("baseURLRickAndMorty");
     }
 
     @Test

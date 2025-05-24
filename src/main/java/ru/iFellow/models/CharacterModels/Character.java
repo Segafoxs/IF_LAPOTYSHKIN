@@ -1,7 +1,10 @@
 package ru.iFellow.models.CharacterModels;
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.Date;
 
+@Data
 public class Character {
         public int id;
         public String name;
