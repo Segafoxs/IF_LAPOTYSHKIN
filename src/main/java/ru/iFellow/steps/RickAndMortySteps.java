@@ -2,7 +2,6 @@ package ru.iFellow.steps;
 import ru.iFellow.API.rickAndMorty.RickAndMortyAPI;
 import ru.iFellow.models.CharacterModels.Character;
 import ru.iFellow.models.CharacterModels.Root;
-import ru.iFellow.models.EpisodeModels.Episode;
 import java.util.ArrayList;
 
 public class RickAndMortySteps {
