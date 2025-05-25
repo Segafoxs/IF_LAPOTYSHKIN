@@ -23,21 +23,12 @@ public class RickAndMortySteps {
         return list;
     }
 
-    public Episode getEpisodeForLink(String url){
-        Episode episode = rickAndMorty.getItemForURL(url)
+    public <T> T getItemForLink(String url, Class<T> tClass) {
+        T item = rickAndMorty.getItemForURL(url)
                 .statusCode(200)
                 .extract()
                 .body()
-                .as(Episode.class);
-        return episode;
-    }
-
-    public Character getCharacterForLink(String url){
-        Character character = rickAndMorty.getItemForURL(url)
-                .statusCode(200)
-                .extract()
-                .body()
-                .as(Character.class);
-        return character;
+                .as(tClass);
+        return item;
     }
 }

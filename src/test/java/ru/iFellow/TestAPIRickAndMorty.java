@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.iFellow.Hooks.Hooks;
 import ru.iFellow.models.CharacterModels.Character;
 import ru.iFellow.models.CharacterModels.Root;
+import ru.iFellow.models.EpisodeModels.Episode;
 import ru.iFellow.steps.RickAndMortySteps;
 import java.util.ArrayList;
 
@@ -29,10 +30,10 @@ public class TestAPIRickAndMorty extends Hooks {
         Root root = rickAndMorty.getCharacterForName("Morty Smith");
         ArrayList<Character> ls = rickAndMorty.popCharacterList(root);
         String lastEpisode = ls.get(0).episode.get(ls.get(0).episode.size() - 1);
-        int lenListCharacterEpisode = rickAndMorty.getEpisodeForLink(lastEpisode).characters.size() - 1;
-        String urlLastCharacter = rickAndMorty.getEpisodeForLink(lastEpisode).characters.get(lenListCharacterEpisode);
-        int idEpisode = rickAndMorty.getEpisodeForLink(lastEpisode).id;
-        Character lastCharacter = rickAndMorty.getCharacterForLink(urlLastCharacter);
+        int lenListCharacterEpisode = rickAndMorty.getItemForLink(lastEpisode, Episode.class).characters.size() - 1;
+        String urlLastCharacter = rickAndMorty.getItemForLink(lastEpisode, Episode.class).characters.get(lenListCharacterEpisode);
+        int idEpisode = rickAndMorty.getItemForLink(lastEpisode, Episode.class).id;
+        Character lastCharacter = rickAndMorty.getItemForLink(urlLastCharacter, Character.class);
         Assertions.assertEquals(51, idEpisode);
         Assertions.assertEquals("Young Jerry", lastCharacter.name);
     }
@@ -43,9 +44,9 @@ public class TestAPIRickAndMorty extends Hooks {
         Root root = rickAndMorty.getCharacterForName("Morty Smith");
         ArrayList<Character> ls = rickAndMorty.popCharacterList(root);
         String lastEpisode = ls.get(0).episode.get(ls.get(0).episode.size() - 1);
-        int lenListCharacterEpisode = rickAndMorty.getEpisodeForLink(lastEpisode).characters.size() - 1;
-        String urlLastCharacter = rickAndMorty.getEpisodeForLink(lastEpisode).characters.get(lenListCharacterEpisode);
-        Character lastCharacter = rickAndMorty.getCharacterForLink(urlLastCharacter);
+        int lenListCharacterEpisode = rickAndMorty.getItemForLink(lastEpisode, Episode.class).characters.size() - 1;
+        String urlLastCharacter = rickAndMorty.getItemForLink(lastEpisode, Episode.class).characters.get(lenListCharacterEpisode);
+        Character lastCharacter = rickAndMorty.getItemForLink(urlLastCharacter, Character.class);
         String species = lastCharacter.species;
         String location = lastCharacter.location.name;
         Assertions.assertEquals("Human", species);
@@ -58,9 +59,9 @@ public class TestAPIRickAndMorty extends Hooks {
         Root root = rickAndMorty.getCharacterForName("Morty Smith");
         ArrayList<Character> ls = rickAndMorty.popCharacterList(root);
         String lastEpisode = ls.get(0).episode.get(ls.get(0).episode.size() - 1);
-        int lenListCharacterEpisode = rickAndMorty.getEpisodeForLink(lastEpisode).characters.size() - 1;
-        String urlLastCharacter = rickAndMorty.getEpisodeForLink(lastEpisode).characters.get(lenListCharacterEpisode);
-        Character lastCharacter = rickAndMorty.getCharacterForLink(urlLastCharacter);
+        int lenListCharacterEpisode = rickAndMorty.getItemForLink(lastEpisode, Episode.class).characters.size() - 1;
+        String urlLastCharacter = rickAndMorty.getItemForLink(lastEpisode, Episode.class).characters.get(lenListCharacterEpisode);
+        Character lastCharacter = rickAndMorty.getItemForLink(urlLastCharacter, Character.class);
         String speciesJerry = lastCharacter.species;
         String locationJerry = lastCharacter.location.name;
         String speciesMorty = ls.get(0).species;
