@@ -1,10 +1,8 @@
-package ru.iFellow;
-
+package ru.iFellow.pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-
+import io.qameta.allure.Step;
 import java.time.Duration;
-
 import static com.codeborne.selenide.Selenide.*;
 
 public class CreateNewBug {
@@ -35,17 +33,14 @@ public class CreateNewBug {
     private SelenideElement buttonInputBug = $x("//footer[@class='aui-dialog2-footer']//div[@class='buttons']//input[@name='Edit']").as("Отправка формы создания бага");
     private final SelenideElement pDesription = $("p");
     private final SelenideElement pEnv = $("p");
-    private final String topicBug = "New Bug AT13";
-    private final String markerBug = "bugfix";
-    private final String description = "FIX FIX FIX";
-    private final String searchTask = "TEST-182096";
-    private final String board = "Доска Спринт 1";
 
+    @Step("Нажимаем кнопку 'Создать'")
     public void clckButton(){
         createButton.shouldBe(Condition.visible, Duration.ofSeconds(8));
         createButton.click();
     }
 
+    @Step("Прожимаем кнопку 'Визуальный'")
     public void clckButtonVisual(){
         buttonVisual.shouldBe(Condition.visible, Duration.ofSeconds(8));
         buttonVisual.click();
@@ -53,13 +48,15 @@ public class CreateNewBug {
         buttonVisualTwo.click();
     }
 
-    public void clckInputTopicBugField(){
+    @Step("Заполение поля 'Тема'")
+    public void clckInputTopicBugField(String topicBug){
         inputVersion.shouldBe(Condition.visible, Duration.ofSeconds(8));
         inputTopicBug.click();
         inputTopicBug.sendKeys(topicBug);
     }
 
-    public void writeFieldDesription(){
+    @Step("Заполнение фрейма 'Описание'")
+    public void writeFieldDesription(String description){
         descriptionFieldIframe.shouldBe(Condition.visible, Duration.ofSeconds(8));
         switchTo().frame(descriptionFieldIframe);
         pDesription.shouldBe(Condition.visible, Duration.ofSeconds(8));
@@ -67,49 +64,56 @@ public class CreateNewBug {
         switchTo().defaultContent();
     }
 
+    @Step("Выбираем версию 'Исправить в версиях'")
     public void chooseVersionFix(){
         inputVersion.shouldBe(Condition.visible, Duration.ofSeconds(8));
         inputVersion.selectOption("Version 2.0");
     }
 
-    public void sendTextInTextAriaBug(){
+    @Step("Заполняем поле 'метки'")
+    public void sendTextInTextAriaBug(String markerBug){
         textAriaBug.shouldBe(Condition.visible, Duration.ofSeconds(8));
         textAriaBug.click();
         textAriaBug.setValue(markerBug).pressEnter();
     }
 
-    public void writeEnvField(){
+    @Step("Заполняем фрейм 'окружение'")
+    public void writeEnvField(String description){
         switchTo().frame(envFieldIframe);
         pEnv.sendKeys(description);
         switchTo().defaultContent();
     }
 
+    @Step("Заполняем поле 'затронуты версии'")
     public void choiceVersionBug(){
         choiceVersion.shouldBe(Condition.visible, Duration.ofSeconds(8));
         choiceVersion.selectOption("Version 2.0");
     }
 
-    public void connetTaskNewBug()
+    @Step("Заполняем поле 'Задача'")
+    public void connetTaskNewBug(String task)
     {
         connectTask.shouldBe(Condition.visible, Duration.ofSeconds(8));
         connectTask.click();
-        connectTask.setValue(searchTask).pressEnter();
+        connectTask.setValue(task).pressEnter();
     }
 
-    public void choiceSprintBug(){
+    @Step("Заполняем поле 'спринт'")
+    public void choiceSprintBug(String board){
         sprint.shouldBe(Condition.visible, Duration.ofSeconds(8));
         sprint.click();
         sprint.setValue(board).pressEnter();
     }
 
+    @Step("Указываем приоритет бага")
     public void choicePrioretyBug(){
         listPrioretyBug.shouldBe(Condition.visible, Duration.ofSeconds(8));
         listPrioretyBug.click();
         prioretyBug.shouldBe(Condition.visible, Duration.ofSeconds(8));
         prioretyBug.click();
-
     }
 
+    @Step("Нажимаем кнопку Создать")
     public void createNewBugButtonClick()
     {
         buttonInputBug.shouldBe(Condition.visible, Duration.ofSeconds(8));
