@@ -14,8 +14,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>5.11.1</junit.version>
     <allure.version>2.25.0</allure.version>
+    <allure-selenide.version>2.29.1</allure-selenide.version>
     <aspectj.version>1.9.21</aspectj.version>
     <selenide.version>7.8.1</selenide.version>
+    <jackson.version>2.19.0</jackson.version>
+    <lombock.version>1.18.38</lombock.version>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
@@ -72,7 +75,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.19.0</version>
+      <version>${jackson.version}</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -102,14 +105,12 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.38</version>
-      <scope>provided</scope>
+      <version>${lombock.version}</version>
     </dependency>
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-junit5</artifactId>
       <version>${allure.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.qameta.allure</groupId>
@@ -118,18 +119,12 @@
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-selenide</artifactId>
-      <version>2.29.1</version>
+      <version>${allure-selenide.version}</version>
     </dependency>
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
       <version>${selenide.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <version>2.0.6</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
