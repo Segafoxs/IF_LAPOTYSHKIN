@@ -9,7 +9,6 @@ public class RickAndMortySteps {
 
     public Root getCharacterForName(String name) {
         Root root = rickAndMorty.getCharacterForName(name)
-                .statusCode(200)
                 .extract()
                 .body()
                 .as(Root.class);
@@ -23,11 +22,9 @@ public class RickAndMortySteps {
     }
 
     public <T> T getItemForLink(String url, Class<T> tClass) {
-        T item = rickAndMorty.getItemForURL(url)
-                .statusCode(200)
+        return rickAndMorty.getItemForURL(url)
                 .extract()
                 .body()
                 .as(tClass);
-        return item;
     }
 }

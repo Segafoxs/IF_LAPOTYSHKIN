@@ -1,5 +1,4 @@
 package ru.iFellow.models.CharacterModels;
-
 import lombok.Data;
 
 @Data

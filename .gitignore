@@ -14,7 +14,7 @@ target/
 
 .allure/
 build/
-config.properties
+src/test/resources/config.properties
 
 ### Eclipse ###
 .apt_generated

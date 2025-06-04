@@ -1,6 +1,4 @@
 package ru.iFellow.models.User;
-
-
 import lombok.Data;
 
 @Data

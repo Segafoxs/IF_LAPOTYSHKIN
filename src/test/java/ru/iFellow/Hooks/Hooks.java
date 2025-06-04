@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import ru.iFellow.API.Specifications.Specifications;
-import static ru.iFellow.utill.TestProperties.getProperty;
+import static ru.iFellow.TestProperties.getProperty;
 
 public class Hooks {
     private static String urlAPI;

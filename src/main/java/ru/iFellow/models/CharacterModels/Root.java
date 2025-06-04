@@ -1,6 +1,5 @@
 package ru.iFellow.models.CharacterModels;
 import lombok.Data;
-
 import java.util.ArrayList;
 
 @Data
