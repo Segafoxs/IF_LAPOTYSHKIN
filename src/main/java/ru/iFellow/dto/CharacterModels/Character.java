@@ -1,4 +1,4 @@
-package ru.iFellow.models.CharacterModels;
+package ru.iFellow.dto.CharacterModels;
 import lombok.Data;
 import java.util.ArrayList;
 import java.util.Date;

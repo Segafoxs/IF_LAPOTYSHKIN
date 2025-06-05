@@ -1,4 +1,4 @@
-package ru.iFellow.models.User;
+package ru.iFellow.dto.User;
 import lombok.Data;
 import java.util.Date;
 

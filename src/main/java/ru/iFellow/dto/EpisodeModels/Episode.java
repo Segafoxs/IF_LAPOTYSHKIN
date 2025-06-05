@@ -1,4 +1,4 @@
-package ru.iFellow.models.EpisodeModels;
+package ru.iFellow.dto.EpisodeModels;
 import lombok.Data;
 import java.util.ArrayList;
 import java.util.Date;
